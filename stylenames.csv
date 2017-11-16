@@ -54,6 +54,7 @@ blk,img,FALSE,FALSE,1
 blk,caption,FALSE,FALSE,1
 blk,dialogue,FALSE,FALSE,1
 blk,speaker,FALSE,TRUE,1
+blk,line-space,FALSE,TRUE,1
 inl,bold,FALSE,FALSE,2
 inl,ital,FALSE,FALSE,2
 inl,under,FALSE,FALSE,2
