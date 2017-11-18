@@ -20,6 +20,7 @@ sec,glossary,FALSE,FALSE,1
 sec,bibliography,FALSE,FALSE,1
 sec,about-the-author,FALSE,FALSE,1
 sec,index,FALSE,FALSE,1
+sec,endnotes,FALSE,FALSE,1
 wpr,fig,FALSE,FALSE,1
 wpr,table,FALSE,FALSE,1
 wpr,box,FALSE,TRUE,1
