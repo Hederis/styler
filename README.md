@@ -32,7 +32,7 @@ ID, number of levels, and number of variations can be configured in *word-styles
 `h_inl_bold`
 
 # To do
-[] Handle "style already exists"
+[x] Handle "style already exists"
 [x] If parameter value is a file, add style to file only; if value is a directory, add styles to all .docx in directory.
 [] Add simple formatting, particularly something to distinguish start/end
 [] Add simple heuristics to style relatively standard items

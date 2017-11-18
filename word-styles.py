@@ -57,8 +57,9 @@ def add_styles_to_doc(word_docx, list_of_styles):
     document = Document(word_docx)
     docstyles = document.styles
     for stylename in list_of_styles:
-        docstyles.add_style(stylename, WD_STYLE_TYPE.PARAGRAPH)
-        # p = document.add_paragraph(finalname, style=finalname)
+        if stylename not in docstyles:
+            docstyles.add_style(stylename, WD_STYLE_TYPE.PARAGRAPH)
+            # p = document.add_paragraph(finalname, style=finalname)
     document.save(word_docx)
 
 styles = style_names(style_source_file, max_variations, max_levels, identifier)
