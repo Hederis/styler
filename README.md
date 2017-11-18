@@ -1,6 +1,6 @@
 # Style Yr Manuscripts
 * _stylenames.csv_: stores style names we're using, see below for syntax/rules
-* _word-styles.py_: requires path to directory as argument, will add styles to any _.docx_ files in that directory
+* _word-styles.py_: pass path to a file or directory as an argument, it will add styles to _.docx_ (or all _.docx_ files in directory)
 
 # Style name syntax
 1. Single letter id
@@ -33,6 +33,7 @@ ID, number of levels, and number of variations can be configured in *word-styles
 
 # To do
 [] Handle "style already exists"
+[x] If parameter value is a file, add style to file only; if value is a directory, add styles to all .docx in directory.
 [] Add simple formatting, particularly something to distinguish start/end
 [] Add simple heuristics to style relatively standard items
 [] Character styles
