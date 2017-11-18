@@ -25,42 +25,50 @@ See README for explanation of style name syntax rules.
 """
 
 # various settings here
-number_of_variations = 3
-number_of_levels = 5
-id_prefix = "h"
+max_variations = 3
+max_levels = 5
+identifier = "h"
+style_source_file = "stylenames.csv"
 
-variations = list(string.ascii_lowercase[:number_of_variations])
-# range end is exclusive, so add 1
-levels = list(range(1,number_of_levels+1))
-wrappers = ["start", "end"]
-# document = Document()
-# docstyles = document.styles
-finalnames = []
-with open("stylenames.csv") as csvfile:
-    ourstyles = csv.DictReader(csvfile)
-    for style in ourstyles:
-        if int(style["type"]) == WD_STYLE_TYPE.PARAGRAPH:
-            stylenames = [style["name"]]
-            if strtobool(style["levels"]) == True:
-                stylenames = [x + str(y) for x in stylenames for y in levels]
-            if strtobool(style["variations"]) == True:
-                stylenames = [x + "_" + y for x in stylenames for y in variations]
-            if style["prefix"] == "wpr":
-                stylenames = [x + "_" + y for x in stylenames for y in wrappers]
+def style_names(source_file, number_of_variations, number_of_levels, id_prefix):
+    variations = list(string.ascii_lowercase[:number_of_variations])
+    # range end is exclusive, so add 1
+    levels = list(range(1,number_of_levels+1))
+    wrappers = ["start", "end"]
+    # document = Document()
+    # docstyles = document.styles
+    finalnames = []
+    with open(source_file) as csvfile:
+        ourstyles = csv.DictReader(csvfile)
+        for style in ourstyles:
+            if int(style["type"]) == WD_STYLE_TYPE.PARAGRAPH:
+                stylenames = [style["name"]]
+                if strtobool(style["levels"]) == True:
+                    stylenames = [x + str(y) for x in stylenames for y in levels]
+                if strtobool(style["variations"]) == True:
+                    stylenames = [x + "_" + y for x in stylenames for y in variations]
+                if style["prefix"] == "wpr":
+                    stylenames = [x + "_" + y for x in stylenames for y in wrappers]
 
-            finalnames = finalnames + ["_".join([id_prefix,style["prefix"],x]) for x in stylenames]
+                finalnames = finalnames + ["_".join([id_prefix,style["prefix"],x]) for x in stylenames]
+    return finalnames
 
-    docdir = sys.argv[1]
-    if os.path.exists(docdir):
-        os.chdir(docdir)
+def add_styles_to_doc(word_docx, list_of_styles):
+    document = Document(word_docx)
+    docstyles = document.styles
+    for stylename in list_of_styles:
+        docstyles.add_style(stylename, WD_STYLE_TYPE.PARAGRAPH)
+        # p = document.add_paragraph(finalname, style=finalname)
+    document.save(word_docx)
+
+styles = style_names(style_source_file, max_variations, max_levels, identifier)
+docs = sys.argv[1]
+if os.path.exists(docs):
+    if os.path.isdir(docs):
+        os.chdir(docs)
         # reverse to print countdown as files are processed
         for i, file in enumerate(glob.glob("*.docx")):
             print i
-            document = Document(file)
-            docstyles = document.styles
-
-            for finalname in finalnames:
-                docstyles.add_style(finalname, int(style["type"]))
-                # p = document.add_paragraph(finalname, style=finalname)
-            document.save(file)
-#document.save('styles.docx')
+            add_styles_to_doc(file, styles)
+    elif os.path.isfile(docs):
+        add_styles_to_doc(docs, styles)
