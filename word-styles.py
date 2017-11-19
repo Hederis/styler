@@ -38,7 +38,7 @@ def style_names(source_file, number_of_variations, number_of_levels, id_prefix):
     # document = Document()
     # docstyles = document.styles
     finalnames = []
-    with open(source_file) as csvfile:
+    with open(source_file, 'rU') as csvfile:
         ourstyles = csv.DictReader(csvfile)
         for style in ourstyles:
             if int(style["type"]) == WD_STYLE_TYPE.PARAGRAPH:
