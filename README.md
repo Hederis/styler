@@ -31,6 +31,10 @@ ID, number of levels, and number of variations can be configured in *word-styles
 `h_blk_li1`
 `h_inl_bold`
 
+# Styling Notes
+1. Replace soft returns with hard returns in source before styling manuscript.
+2. Delete source data at begin / end of manuscript file.
+
 # To do
 [x] Handle "style already exists"
 [x] If parameter value is a file, add style to file only; if value is a directory, add styles to all .docx in directory.
