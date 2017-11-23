@@ -31,6 +31,7 @@ def style_names(source_file, number_of_variations, number_of_levels, id_prefix):
     # range end is exclusive, so add 1
     levels = list(range(1,number_of_levels+1))
     wrappers = ["start", "end"]
+    orders = ["first", "last", "only"]
     # document = Document()
     # docstyles = document.styles
     finalnames = []
@@ -45,6 +46,8 @@ def style_names(source_file, number_of_variations, number_of_levels, id_prefix):
                     stylenames = [x + "_" + y for x in stylenames for y in variations]
                 if style["prefix"] == "wpr":
                     stylenames = [x + "_" + y for x in stylenames for y in wrappers]
+                if strtobool(style["order"]) == True:
+                    stylenames = [x + "_" + y for x in stylenames for y in orders] + [style["name"]]
 
                 finalnames = finalnames + ["_".join([id_prefix,style["prefix"],x]) for x in stylenames]
     return finalnames
