@@ -27,7 +27,7 @@ wpr,box,FALSE,TRUE,1,FALSE,
 wpr,unordered-list,FALSE,TRUE,1,FALSE,"i.e., bulleted list"
 wpr,epi,FALSE,TRUE,1,FALSE,
 wpr,ext,FALSE,TRUE,1,FALSE,
-wpr,letter,FALSE,TRUE,1,FALSE,use if letter contains another element/wrapper; otherwise just use letter block styles
+wpr,letter,FALSE,TRUE,1,FALSE,use if (1) letter contains another element/wrapper OR (2) letter variations are needed; otherwise just use letter block styles
 wpr,ordered-list,FALSE,TRUE,1,FALSE,"i.e., numbered list"
 wpr,sect,TRUE,FALSE,1,FALSE,for subsections that are part of a deliberate structure. Cf. subhead.
 wpr,sidebar,FALSE,TRUE,1,FALSE,
@@ -65,7 +65,7 @@ wpr,footnote,FALSE,FALSE,1,FALSE,"use for footnotes containing other elements, e
 wpr,endnote,FALSE,FALSE,1,FALSE,"use for endnotes containing other elements, e.g. an extract"
 blk,attribution,FALSE,FALSE,1,FALSE,"replaces ""source"""
 blk,attribution-cont,FALSE,FALSE,1,FALSE,
-blk,letter-address,FALSE,TRUE,1,TRUE,
+blk,letter-address,FALSE,FALSE,1,TRUE,
 blk,letter-salutation,FALSE,FALSE,1,FALSE,
 blk,letter-date,FALSE,FALSE,1,FALSE,
 blk,letter-signature,FALSE,FALSE,1,FALSE,
@@ -73,8 +73,8 @@ blk,letter-heading,FALSE,FALSE,1,FALSE,
 blk,letter-body,FALSE,FALSE,1,FALSE,
 blk,letter-closing,FALSE,FALSE,1,FALSE,
 blk,letter-postscript,FALSE,FALSE,1,FALSE,
-blk,subhead,FALSE,FALSE,1,FALSE,
-blk,delete,FALSE,FALSE,1,FALSE,
+blk,subhead,FALSE,FALSE,1,FALSE,use for headings that are not logically part of a hierarchy
+blk,delete,FALSE,FALSE,1,FALSE,use for paragraphs in source file that should be removed from output HTML
 inl,bold,FALSE,FALSE,2,FALSE,
 inl,ital,FALSE,FALSE,2,FALSE,
 inl,under,FALSE,FALSE,2,FALSE,
