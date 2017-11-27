@@ -23,7 +23,7 @@ ID, number of levels, and number of variations can be configured in *word-styles
 * Each item other than level must be separated by an underscore.
 * No spaces or special characters.
 * Can't have both level and version (?).
-* If it can have levels or versions, always needs to have it in the name (i.e., must have `1` or `a`, even if the only one is in use that doc).
+* If it can have levels or versions, always needs to have it in the name (i.e., must have `1` or `a`, even if the only one is in use in that doc).
 
 ## Examples
 `h_sec_titlepage`
@@ -31,9 +31,14 @@ ID, number of levels, and number of variations can be configured in *word-styles
 `h_blk_li1`
 `h_inl_bold`
 
+# Styling Notes
+1. Replace soft returns with hard returns in source before styling manuscript.
+2. Delete source data at begin / end of manuscript file.
+
 # To do
 [x] Handle "style already exists"
 [x] If parameter value is a file, add style to file only; if value is a directory, add styles to all .docx in directory.
 [] Add simple formatting, particularly something to distinguish start/end
+[] Add more granular copyright page styles
 [] Add simple heuristics to style relatively standard items
 [] Character styles
