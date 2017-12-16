@@ -11,11 +11,10 @@ parser.add_argument('-e', dest='target_element', required=False, default='p', he
 
 args = parser.parse_args()
 
-def get_body_elems(html_path, element):
+def get_body_elems(html_tree, element):
     """
-    Return iterator of all *element*s in the <body> of *html_path*.
+    Return iterator of all *element*s in the <body> of *html_tree*.
     """
-    html_tree = ET.parse(html_path)
     doc_root = html_tree.find('body')
     elem = doc_root.iterfind(element)
     return elem
@@ -30,7 +29,7 @@ def elem_to_dict(element):
 
 def elems_to_df(elements):
     """
-    Return dataframe where each row is one element, one column is the text string of that element, and
+    Return dataframe where each row is one element, one column is the text string of that element, and the element's attributes are the rest of the columns
     """
     # empty list to store paragraph data
     data = []
@@ -42,8 +41,16 @@ def elems_to_df(elements):
     df = pd.DataFrame(data)
     return df
 
+tree = ET.parse(args.input_html)
 # p_elem is iterator of all <p> elements in input file
-p_elem = get_body_elems(args.input_html, args.target_element)
+p_elem = get_body_elems(tree, args.target_element)
 # para_data is dataframe of each p in html
 para_df = elems_to_df(p_elem)
 print (para_df)
+
+"""
+TO DO
+* Pull target variable out into its own numpy array y
+* Convert 'text' column to bag-of-words scipy.sparse matrix
+* Process entire directory of html files, add some sort of document_id column
+"""
