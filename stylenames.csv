@@ -31,6 +31,7 @@ wpr,letter,FALSE,TRUE,1,FALSE,use if (1) letter contains another element/wrapper
 wpr,ordered-list,FALSE,TRUE,1,FALSE,"i.e., numbered list"
 wpr,sect,TRUE,FALSE,1,FALSE,for subsections that are part of a deliberate structure. Cf. subhead.
 wpr,sidebar,FALSE,TRUE,1,FALSE,
+wpr,literal,FALSE,FALSE,1,FALSE,for poetry/code
 wpr,simple-list,TRUE,FALSE,1,FALSE,"i.e., unordered list"
 blk,title,FALSE,FALSE,1,FALSE,"use for title of any element, including parent sections, sect elements, sidebars, etc."
 blk,number,FALSE,FALSE,1,FALSE,"use for section head also, i.e. FMH"
