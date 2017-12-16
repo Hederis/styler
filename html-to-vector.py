@@ -1,10 +1,13 @@
 import argparse
-from lxml import html, etree
+import numpy as np
+import pandas as pd
+from lxml import html
 import xml.etree.ElementTree as ET
 
 # program arguments
 parser = argparse.ArgumentParser(description="Converts text and attributes in HTML to vectors.")
-parser.add_argument('input_html', help="Path to html file.")
+parser.add_argument('-i', dest="input_html", required=True, help="Path to html file.")
+parser.add_argument('-e', dest='target_element', required=False, default='p', help="Element type you want to convert to a vector.")
 
 args = parser.parse_args()
 
@@ -25,21 +28,22 @@ def elem_to_dict(element):
     p_data['text'] = ' '.join([txt.strip() for txt in element.itertext()])
     return p_data
 
-def elems_to_dict(elements):
+def elems_to_df(elements):
     """
-    Return dict where each key is the 'data-source-id' for a given element and each value is a dictionary containing that element's attributes and text.
+    Return dataframe where each row is one element, one column is the text string of that element, and
     """
-    # empty dict to store paragraph data
-    data = {}
+    # empty list to store paragraph data
+    data = []
     # iterate over all <p>s
     for elem in elements:
         record = elem_to_dict(elem)
-        data[record['data-source-id']] = record
+        data.append(record)
 
-    return data
+    df = pd.DataFrame(data)
+    return df
 
 # p_elem is iterator of all <p> elements in input file
-p_elem = get_body_elems(args.input_html, 'p')
-# para_data is dict of dicts of each p in html
-para_data = elems_to_dict(p_elem)
-print (para_data)
+p_elem = get_body_elems(args.input_html, args.target_element)
+# para_data is dataframe of each p in html
+para_df = elems_to_df(p_elem)
+print (para_df)
